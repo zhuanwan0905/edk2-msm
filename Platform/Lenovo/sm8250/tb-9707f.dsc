@@ -11,20 +11,22 @@
   FLASH_DEFINITION               = Platform/Qualcomm/sm8250/sm8250.fdf
   DEVICE_DXE_FV_COMPONENTS       = Platform/Lenovo/sm8250/tb-9707f.fdf.inc [cite: 2]
 
-!include Platform/Qualcomm/sm8250/sm8250.dsc [cite: 2]
+# 尝试使用相对路径引用，确保编译器能定位到你截图中的位置 [cite: 2]
+!include Platform/Qualcomm/sm8250/sm8250.dsc
 
 [BuildOptions.common]
-  GCC:*_*_AARCH64_CC_FLAGS = -DENABLE_SIMPLE_INIT -DENABLE_LINUX_SIMPLE_MASS_STORAGE [cite: 2, 3]
+  # 开启大容量存储模式宏 [cite: 2, 3]
+  GCC:*_*_AARCH64_CC_FLAGS = -DENABLE_SIMPLE_INIT -DENABLE_LINUX_SIMPLE_MASS_STORAGE
 
 [PcdsFixedAtBuild.common]
   # 屏幕分辨率设置
-  gQcomTokenSpaceGuid.PcdMipiFrameBufferWidth|1600 
-  gQcomTokenSpaceGuid.PcdMipiFrameBufferHeight|2560 
+  gQcomTokenSpaceGuid.PcdMipiFrameBufferWidth|1600
+  gQcomTokenSpaceGuid.PcdMipiFrameBufferHeight|2560
 
   # Simple Init UI 设置
-  gSimpleInitTokenSpaceGuid.PcdGuiDefaultDPI|400 
+  gSimpleInitTokenSpaceGuid.PcdGuiDefaultDPI|400
 
   # 设备识别信息
-  gRenegadePkgTokenSpaceGuid.PcdDeviceVendor|"Lenovo" 
-  gRenegadePkgTokenSpaceGuid.PcdDeviceProduct|"Legion Tab Y700" 
+  gRenegadePkgTokenSpaceGuid.PcdDeviceVendor|"Lenovo"
+  gRenegadePkgTokenSpaceGuid.PcdDeviceProduct|"Legion Tab Y700"
   gRenegadePkgTokenSpaceGuid.PcdDeviceCodeName|"TB-9707F"
